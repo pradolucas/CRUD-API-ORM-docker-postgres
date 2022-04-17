@@ -1,0 +1,11 @@
+{
+  "development": {
+    "dialect": "postgres",
+    "port": 5432,
+    "host": "postgres-container",
+    "database": "engsoft",
+    "username": "postgres",
+    "password": "example",
+    "logging": false
+  }
+}

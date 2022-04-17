@@ -5,11 +5,11 @@ app.use(express.json())
 const port = 9001
 
 const api = require('./api');
-app.get('/users/', api.getAllUsers);
-app.get('/users/:id', api.getUserById);
-app.post('/users/', api.addUser);
-app.put('/users/', api.updateUser);
-app.delete('/users/', api.deleteUser);
+app.get('/users', api.read);
+// app.get('/users/:id', api.getUserById);
+app.post('/users/', api.insert);
+app.put('/users/', api.update);
+app.delete('/users/', api.del);
 
 app.listen(port, "0.0.0.0", function() {
   console.log('Listening on port 9001')
