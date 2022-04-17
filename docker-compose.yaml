@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    container_name: postgres-container
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./db:/var/lib/postgresql
+    # command: psql postgres postgres < db/scripts.sql
+   
+  api:
+    build: "./api"
+    container_name: node-api-container
+    restart: always
+    volumes:
+      - ./api:/home/node/app
+    ports: 
+      - "9001:9001"
+    depends_on: 
+      - db
