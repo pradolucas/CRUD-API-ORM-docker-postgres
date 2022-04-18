@@ -1,0 +1,308 @@
+swagger: "2.0"
+info:
+  description: "Primeira versão da API para fornecimento de informação da Plataforma E-learning"
+  version: "1.0.0"
+  title: "Plataforma de E-learning"
+host: "localhost:9001"
+basePath: "/"
+tags:
+- name: "user"
+  description: "Operations about user"
+- name: "trail"
+  description: "Operations about trail"
+- name: "video"
+  description: "Operations about video"
+- name: "comment"
+  description: "Operations about comment"
+- name: "report"
+  description: "Operations about report"
+schemes:
+- "http"
+paths:
+  /users/{id}:
+    get:
+      tags:
+      - "user"
+      summary: "Get user by user id"
+      description: ""
+      operationId: "getUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be fetched. Use 1 for testing. "
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+  /users:
+    get:
+      tags:
+      - "user"
+      summary: "Get all users"
+      description: ""
+      operationId: "getUsers"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+    put:
+      tags:
+      - "user"
+      summary: "Updated user"
+      description: ""
+      operationId: "updateUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "Invalid user supplied"
+        "404":
+          description: "User not found"
+    delete:
+      tags:
+      - "user"
+      summary: "Delete user"
+      description: ""
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Delete user id"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses: 
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: ""
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+    
+  /users/createWithArray:
+    post:
+      tags:
+      - "user"
+      summary: "NAO IMPLEMENTADO"
+      description: ""
+      operationId: "createUsersWithArrayInput"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+  /users/createWithList:
+    post:
+      tags:
+      - "user"
+      summary: "NAO IMPLEMENTADO"
+      description: ""
+      operationId: "createUsersWithListInput"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+  /users/login:
+    get:
+      tags:
+      - "user"
+      summary: "NAO IMPLEMENTADO"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "400":
+          description: "Invalid username/password supplied"
+  /users/logout:
+    get:
+      tags:
+      - "user"
+      summary: "NAO IMPLEMENTADO"
+      description: ""
+      operationId: "logoutUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:user: "modify user in your account"
+      read:user: "read your user"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  User:
+    required: 
+      - "id"
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      nome:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      ehadmin:
+        type: "boolean"
+      blocked:
+        type: "boolean"
+      banned:
+        type: "boolean"
+  Trail:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      owner:
+        type: "integer"
+      nome:
+        type: "string"
+      comentarios:
+        type: "string"
+      categoria:
+        type: "string"
+  Video:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      id_trilha:
+        type: "integer"
+      nome:
+        type: "string"
+      url:
+        type: "string"
+  Comment:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      id_usuario:
+        type: "integer"
+      id_trilha:
+        type: "integer"
+  Report:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      razao:
+        type: "string"
+      id_trilha:
+        type: "integer"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"

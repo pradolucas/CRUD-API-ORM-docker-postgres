@@ -31,7 +31,7 @@ CREATE TABLE "comentarios" (
   "id" INT PRIMARY KEY NOT NULL,
   "conteudo" VARCHAR(200),
   "id_usuario" INT NOT NULL,
-  "id_trilha" INT
+  "id_trilha" INT NOT NULL,
 );
 
 CREATE TABLE "denuncia" (
