@@ -9,5 +9,6 @@ router.route('/trails')
   .delete(controller.del)
 
 router.get('/trails/:id', controller.read_id)
+router.post('/trails/:id/videos', controller.associatedVideos)
 
 module.exports = router;

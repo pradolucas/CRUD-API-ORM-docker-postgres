@@ -1,5 +1,5 @@
 const model = require('../src/api')
-
+// console.log(Object.keys(model))
 const read = (req, res) => {
   model.Trails.findAll(
   ).then((data) => {
@@ -19,7 +19,17 @@ const read_id = (req, res) => {
     console.log(error)
     res.send(error)
   })
+};
 
+const associatedVideos = (req, res) => {
+  const id = parseInt(req.params.id)
+  const trail = model.Trails.findAll({ where: { 'id': id }, include: model.Videos }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
 }
 
 // .build().save() == .create()
@@ -68,6 +78,7 @@ const del = (req, res) => {
 module.exports = {
   read
   , read_id
+  , associatedVideos
   , insert
   , update
   , del

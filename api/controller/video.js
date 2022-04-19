@@ -19,8 +19,19 @@ const read_id = (req, res) => {
     console.log(error)
     res.send(error)
   })
-
 }
+
+const associatedTrails = (req, res) => {
+  const id = parseInt(req.params.id)
+  const videos = model.Videos.findAll({ where: { "id": id }, include: model.Trails }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
 
 // .build().save() == .create()
 const insert = (req, res) => {
@@ -68,6 +79,7 @@ const del = (req, res) => {
 module.exports = {
   read
   , read_id
+  , associatedTrails
   , insert
   , update
   , del

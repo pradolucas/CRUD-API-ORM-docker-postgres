@@ -31,7 +31,19 @@ fs
     db[model.name] = model;
   });
 
+Object.keys(db).forEach((modelName) => {
+  if ('associate' in db[modelName].options) {
+    db[modelName].options.associate(db)
+    console.log(modelName, Object.keys(db[modelName].associations))
+  }
+})
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+// db.Trails.hasMany(db.Videos, { foreignKey: "id_trilha" });
+// db.Videos.belongsTo(db.Trails, { foreignKey: "id" })
+// console.log(db.Trails.associations)
+// console.log(db.Videos.associations)
 
 module.exports = db

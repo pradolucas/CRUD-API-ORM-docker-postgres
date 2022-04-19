@@ -21,9 +21,12 @@ module.exports = (sequelize, DataTypes) => {
   },
     {
       tableName: 'trilhas',
-      timestamps: false
-    }
-  )
+      timestamps: false,
+      associate: (model) => {
+        model.Trails.hasMany(model.Videos, { foreignKey: "id_trilha" });
+      }
+    })
+
   return Trail
 }
 

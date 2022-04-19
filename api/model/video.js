@@ -18,8 +18,10 @@ module.exports = (sequelize, DataTypes) => {
   },
     {
       tableName: 'videos',
-      timestamps: false
-    }
-  )
+      timestamps: false,
+      associate: (model) => {
+        model.Videos.belongsTo(model.Trails, { foreignKey: "id" })
+      }
+    })
   return Video
 }

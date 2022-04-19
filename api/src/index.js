@@ -9,7 +9,7 @@ const routUser = require('../routes/user.js');
 const routComment = require('../routes/comment.js');
 const routReport = require('../routes/report.js');
 const routTrail = require('../routes/trail.js');
-const routVideo = require('../routes/comment.js');
+const routVideo = require('../routes/video.js');
 
 app.use('/', routUser);
 app.use('/', routComment)
