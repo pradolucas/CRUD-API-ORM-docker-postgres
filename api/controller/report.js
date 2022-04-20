@@ -22,6 +22,17 @@ const read_id = (req, res) => {
 
 }
 
+const associatedTrail = (req, res) => {
+  const id = parseInt(req.params.id)
+  const reports = model.Reports.findAll({ where: { 'id': id }, include: model.Trails }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
 // .build().save() == .create()
 const insert = (req, res) => {
   const dados = req.body
@@ -71,4 +82,5 @@ module.exports = {
   , insert
   , update
   , del
+  , associatedTrail
 };

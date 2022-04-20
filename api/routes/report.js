@@ -9,5 +9,7 @@ router.route('/reports')
   .delete(controller.del)
 
 router.get('/reports/:id', controller.read_id)
+router.post('/reports/:id/trails', controller.associatedTrail)
+
 
 module.exports = router;

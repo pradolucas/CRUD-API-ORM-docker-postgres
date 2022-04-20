@@ -9,5 +9,7 @@ router.route('/users')
   .delete(controller.del)
 
 router.get('/users/:id', controller.read_id)
+router.post('/users/:id/trails', controller.associatedTrails)
+router.post('/users/:id/comments', controller.associatedComments)
 
 module.exports = router;

@@ -14,7 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     senha: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      set(value) {
+        // Hashing the value with an appropriate cryptographic hash function is better.
+        // this.setDataValue('senha', Buffer.from(value).toString('base64'));
+        this.setDataValue('senha', btoa(value));
+        // Buffer.from(str_encoded, 'base64').toString('ascii');
+      }
+
     },
     ehadmin: {
       type: DataTypes.BOOLEAN,
@@ -28,7 +35,12 @@ module.exports = (sequelize, DataTypes) => {
   },
     {
       tableName: 'usuarios',
-      timestamps: false
+      timestamps: false,
+      associate: (model) => {
+        model.Users.hasMany(model.Trails, { foreignKey: "id" });
+        model.Users.hasMany(model.Comments, { foreignKey: "id_usuario" });
+      }
+
     }
   )
   return Users

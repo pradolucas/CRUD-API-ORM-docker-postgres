@@ -79,8 +79,8 @@ const del = (req, res) => {
 module.exports = {
   read
   , read_id
-  , associatedTrails
   , insert
   , update
   , del
+  , associatedTrails
 };

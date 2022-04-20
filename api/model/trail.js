@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     nome: {
       type: DataTypes.STRING
     },
-    comentarios: {
+    categoria: {
       type: DataTypes.STRING,
     },
-    categoria: {
+    capa: {
       type: DataTypes.STRING,
     },
   },
@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
       associate: (model) => {
         model.Trails.hasMany(model.Videos, { foreignKey: "id_trilha" });
+        model.Trails.hasMany(model.Reports, { foreignKey: "id_trilha" });
+        model.Trails.hasMany(model.Comments, { foreignKey: "id_trilha" });
+        model.Trails.belongsTo(model.Users, { foreignKey: "id" });
       }
     })
 

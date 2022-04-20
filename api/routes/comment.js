@@ -10,5 +10,7 @@ router.route('/comments')
   .delete(controller.del)
 
 router.get('/comments/:id', controller.read_id)
+router.post('/comments/:id/trails', controller.associatedTrail)
+router.post('/comments/:id/users', controller.associatedUser)
 
 module.exports = router;

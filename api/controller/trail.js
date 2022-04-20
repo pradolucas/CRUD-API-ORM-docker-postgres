@@ -32,6 +32,39 @@ const associatedVideos = (req, res) => {
   })
 }
 
+const associatedReports = (req, res) => {
+  const id = parseInt(req.params.id)
+  const trail = model.Trails.findAll({ where: { 'id': id }, include: model.Reports }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
+const associatedComments = (req, res) => {
+  const id = parseInt(req.params.id)
+  const trails = model.Trails.findAll({ where: { 'id': id }, include: model.Comments }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
+const associatedUser = (req, res) => {
+  const id = parseInt(req.params.id)
+  const trail = model.Trails.findAll({ where: { 'id': id }, include: model.Users }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
 // .build().save() == .create()
 const insert = (req, res) => {
   const dados = req.body
@@ -78,8 +111,11 @@ const del = (req, res) => {
 module.exports = {
   read
   , read_id
-  , associatedVideos
   , insert
   , update
   , del
+  , associatedVideos
+  , associatedReports
+  , associatedComments
+  , associatedUser
 };

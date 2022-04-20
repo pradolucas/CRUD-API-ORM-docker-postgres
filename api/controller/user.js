@@ -22,6 +22,29 @@ const read_id = (req, res) => {
 
 }
 
+const associatedTrails = (req, res) => {
+  const id = parseInt(req.params.id)
+  const users = model.Users.findAll({ where: { 'id': id }, include: model.Trails }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
+
+const associatedComments = (req, res) => {
+  const id = parseInt(req.params.id)
+  const users = model.Users.findAll({ where: { 'id': id }, include: model.Comments }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
 // .build().save() == .create()
 const insert = (req, res) => {
   const dados = req.body
@@ -71,4 +94,6 @@ module.exports = {
   , insert
   , update
   , del
+  , associatedTrails
+  , associatedComments
 };
