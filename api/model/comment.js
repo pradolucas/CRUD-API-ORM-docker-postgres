@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'comentarios',
       timestamps: false,
       associate: (model) => {
-        model.Comments.belongsTo(model.Trails, { foreignKey: "id" });
+        model.Comments.belongsTo(model.Trails, { foreignKey: "id_trilha" });
         model.Comments.belongsTo(model.Users, { foreignKey: "id_usuario" });
       }
     }
