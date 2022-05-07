@@ -1,5 +1,12 @@
 # RUN 
 ```shell
 docker-compose up
-docker exec -i postgres-container postgres -example < ./db/script.sql
 ```
+
+# Update db
+if you want to modify the db after the container is up, run:
+
+```shell
+docker exec -i postgres-container postgres < ./db/script.sql
+```
+
