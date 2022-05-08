@@ -3,7 +3,7 @@ const model = require('../src/api')
 const read = (req, res) => {
   model.Users.findAll(
   ).then((data) => {
-    res.send(data)
+    res.send(JSON.stringify(data, null, 4))
   }).catch((error) => {
     console.log(error)
     res.send(error)
@@ -19,7 +19,6 @@ const read_id = (req, res) => {
     console.log(error)
     res.send(error)
   })
-
 }
 
 const associatedTrails = (req, res) => {

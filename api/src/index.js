@@ -1,21 +1,24 @@
-const { Router } = require('express');
 const express = require('express');
+const cors = require('cors')
 
 const app = express();
 app.use(express.json())
+app.use(cors())
 const port = 9001
 
-const routUser = require('../routes/user.js');
-const routComment = require('../routes/comment.js');
-const routReport = require('../routes/report.js');
-const routTrail = require('../routes/trail.js');
-const routVideo = require('../routes/video.js');
+const routesUser = require('../routes/user.js');
+const routesComment = require('../routes/comment.js');
+const routesReport = require('../routes/report.js');
+const routesTrail = require('../routes/trail.js');
+const routesVideo = require('../routes/video.js');
+const routesLogin = require('../routes/login.js');
 
-app.use('/', routUser);
-app.use('/', routComment)
-app.use('/', routReport)
-app.use('/', routTrail)
-app.use('/', routVideo)
+app.use('/', routesUser);
+app.use('/', routesComment)
+app.use('/', routesReport)
+app.use('/', routesTrail)
+app.use('/', routesVideo)
+app.use('/', routesLogin)
 
 app.listen(port, "0.0.0.0", function() {
   console.log('Listening on port 9001')

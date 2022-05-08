@@ -6,7 +6,7 @@ CREATE TABLE "usuarios" (
   "id" INT PRIMARY KEY NOT NULL,
   "nome" VARCHAR(100) NOT NULL,
   "email" VARCHAR(100) NOT NULL,
-  "senha" VARCHAR(100) NOT NULL,
+  "senha" VARCHAR(300) NOT NULL,
   "ehadmin" boolean NOT NULL,
   "blocked" boolean,
   "banned" boolean

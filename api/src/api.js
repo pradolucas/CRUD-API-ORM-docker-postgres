@@ -7,11 +7,12 @@ const fs = require('fs');
 
 const basename = path.basename(__filename);
 let model_dir = path.dirname(__dirname);
+console.log(model_dir)
 model_dir = path.join(model_dir, 'model');
 const db = {};
 
+// Creating connection with database
 const sequelize = new Sequelize('engsoft', 'postgres', 'example', { dialect: 'postgres', host: 'postgres-container' });
-// const sequelize = new Sequelize(config.database, config.username, config.password, {config});
 async () => {
   try {
     sequelize.sync();
@@ -22,7 +23,7 @@ async () => {
   }
 }
 
-// Creating associations of table objects
+// Creating objects ORM
 fs
   .readdirSync(model_dir)
   .filter(file => {
@@ -33,6 +34,7 @@ fs
     db[model.name] = model;
   });
 
+// Creating asssociation of objetcs
 Object.keys(db).forEach((modelName) => {
   if ('associate' in db[modelName].options) {
     db[modelName].options.associate(db)

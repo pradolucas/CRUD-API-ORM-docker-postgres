@@ -19,7 +19,6 @@ const read_id = (req, res) => {
     console.log(error)
     res.send(error)
   })
-
 }
 
 const associatedTrail = (req, res) => {
