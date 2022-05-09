@@ -16,16 +16,17 @@ CREATE TABLE "trilhas" (
   "id" INT PRIMARY KEY NOT NULL,
   "owner" INT NOT NULL,
   "nome" VARCHAR(100),
-  "descricao" VARCHAR(200),
   "categoria" VARCHAR(100),
-  "capa" VARCHAR(100)
+  "capa" VARCHAR(100),
+  "#likes" INT
 );
 
 CREATE TABLE "videos" (
   "id" INT PRIMARY KEY NOT NULL,
-  "url" VARCHAR(100) NOT NULL,
+  "url" VARCHAR(10) NOT NULL,
   "nome" VARCHAR(100),
-  "id_trilha" INT
+  "id_trilha" INT,
+  "#likes" INT
 );
 
 CREATE TABLE "comentarios" (
@@ -41,6 +42,12 @@ CREATE TABLE "denuncias" (
   "id_trilha" int NOT NULL
 );
 
+CREATE TABLE "favoritos" (
+  "id" INT PRIMARY KEY NOT NULL,
+  "id_trilha" int NOT NULL,
+  "id_usuario" int NOT NULL
+);
+
 ALTER TABLE "comentarios" ADD FOREIGN KEY ("id_usuario") REFERENCES "usuarios" ("id");
 
 ALTER TABLE "denuncias" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
@@ -50,3 +57,7 @@ ALTER TABLE "trilhas" ADD FOREIGN KEY ("owner") REFERENCES "usuarios" ("id");
 ALTER TABLE "videos" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
 
 ALTER TABLE "comentarios" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
+
+ALTER TABLE "favoritos" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
+
+ALTER TABLE "favoritos" ADD FOREIGN KEY ("id_usuario") REFERENCES "usuarios" ("id");
