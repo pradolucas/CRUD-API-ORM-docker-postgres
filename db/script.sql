@@ -18,7 +18,7 @@ CREATE TABLE "trilhas" (
   "nome" VARCHAR(100),
   "categoria" VARCHAR(100),
   "capa" VARCHAR(100),
-  "#likes" INT
+  "likes" INT
 );
 
 CREATE TABLE "videos" (
@@ -26,7 +26,7 @@ CREATE TABLE "videos" (
   "url" VARCHAR(10) NOT NULL,
   "nome" VARCHAR(100),
   "id_trilha" INT,
-  "#likes" INT
+  "likes" INT
 );
 
 CREATE TABLE "comentarios" (

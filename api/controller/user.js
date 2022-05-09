@@ -114,6 +114,21 @@ const likeTrail = (req, res) => {
     })
 }
 
+const dislikeTrail = (req, res) => {
+  const dados = req.body
+  model.Trails.increment({ likes: -1 }, {
+    where: {
+      id: dados.id
+    }
+  })
+    .then((data) => {
+      res.send(true)
+    }).catch((error) => {
+      console.log(error)
+      res.send(false)
+    })
+}
+
 module.exports = {
   read
   , read_id
@@ -124,4 +139,5 @@ module.exports = {
   , associatedComments
   , associatedFavorites
   , likeTrail
+  , dislikeTrail
 };
