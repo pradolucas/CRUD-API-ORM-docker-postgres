@@ -1,0 +1,5 @@
+id,nome,email,senha,ehadmin,blocked,banned
+4,Yasmin,oliveira@gmail.com,olivia,True,False,False
+1,Lucas,lucas@gmail.com,abacate,True,False,False
+2,Jesus,jesus@hotmail.com,pepino,False,False,False
+3,Buddha,buddha@hotmail.com,sidarta,True,False,False
