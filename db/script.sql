@@ -48,16 +48,33 @@ CREATE TABLE "favoritos" (
   "id_usuario" int NOT NULL
 );
 
-ALTER TABLE "comentarios" ADD FOREIGN KEY ("id_usuario") REFERENCES "usuarios" ("id");
+ALTER TABLE "comentarios" 
+  ADD FOREIGN KEY ("id_usuario") 
+  REFERENCES "usuarios" ("id") 
+  ON DELETE CASCADE;
 
-ALTER TABLE "denuncias" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
+ALTER TABLE "denuncias" 
+  ADD FOREIGN KEY ("id_trilha") 
+  REFERENCES "trilhas" ("id") 
+  ON DELETE CASCADE;
 
-ALTER TABLE "trilhas" ADD FOREIGN KEY ("owner") REFERENCES "usuarios" ("id");
+ALTER TABLE "trilhas" 
+  ADD FOREIGN KEY ("owner") 
+  REFERENCES "usuarios" ("id") 
+  ON DELETE CASCADE;
 
-ALTER TABLE "videos" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
+ALTER TABLE "videos" 
+  ADD FOREIGN KEY ("id_trilha") 
+  REFERENCES "trilhas" ("id") 
+  ON DELETE CASCADE;
 
-ALTER TABLE "comentarios" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
+ALTER TABLE "comentarios" 
+  ADD FOREIGN KEY ("id_trilha") 
+  REFERENCES "trilhas" ("id") 
+  ON DELETE CASCADE;
 
-ALTER TABLE "favoritos" ADD FOREIGN KEY ("id_trilha") REFERENCES "trilhas" ("id");
+ALTER TABLE "favoritos" 
+  ADD FOREIGN KEY ("id_trilha") 
+  REFERENCES "trilhas" ("id") 
+  ON DELETE CASCADE;
 
-ALTER TABLE "favoritos" ADD FOREIGN KEY ("id_usuario") REFERENCES "usuarios" ("id");
