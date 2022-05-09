@@ -18,10 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       set(value) {
-        // Hashing the value with an appropriate cryptographic hash function is better.
-        // this.setDataValue('senha', Buffer.from(value).toString('base64'));
-        // this.setDataValue('senha', btoa(value));
-        // Buffer.from(str_encoded, 'base64').toString('ascii');
         const salt = randomBytes(16).toString("base64");
         const hashedPwd = scryptSync(value, salt, 64).toString("base64");
         this.setDataValue('senha', `${salt}:${hashedPwd}`);
@@ -29,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     ehadmin: {
       type: DataTypes.BOOLEAN,
+      allowNull: false
     },
     blocked: {
       type: DataTypes.BOOLEAN,

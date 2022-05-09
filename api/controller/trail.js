@@ -1,13 +1,26 @@
 const model = require('../src/api')
-// console.log(Object.keys(model))
+const { Op } = require("sequelize");
+
 const read = (req, res) => {
-  model.Trails.findAll(
-  ).then((data) => {
-    res.send(data)
-  }).catch((error) => {
-    console.log(error)
-    res.send(error)
-  })
+  if (req.query.name !== undefined) {
+    const name = req.query.name
+    model.Trails.findAll({ where: { nome: { [Op.like]: `%${name}%` } } }
+    ).then((data) => {
+      res.send(data)
+    }).catch((error) => {
+      console.log(error)
+      res.send(error)
+    })
+  }
+  else {
+    model.Trails.findAll(
+    ).then((data) => {
+      res.send(data)
+    }).catch((error) => {
+      console.log(error)
+      res.send(error)
+    })
+  }
 };
 
 const read_id = (req, res) => {
