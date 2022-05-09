@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     capa: {
       type: DataTypes.STRING,
     },
+    likes: {
+      type: DataTypes.INTEGER,
+    }
   },
     {
       tableName: 'trilhas',

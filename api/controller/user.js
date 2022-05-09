@@ -101,7 +101,7 @@ const del = (req, res) => {
 
 const likeTrail = (req, res) => {
   const dados = req.body
-  model.Trails.update(dados, {
+  model.Trails.increment({ likes: 1 }, {
     where: {
       id: dados.id
     }
