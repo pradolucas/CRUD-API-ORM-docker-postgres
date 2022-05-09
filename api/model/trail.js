@@ -23,10 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'trilhas',
       timestamps: false,
       associate: (model) => {
-        model.Trails.hasMany(model.Videos, { foreignKey: "id_trilha" });
+        model.Trails.hasMany(model.Videos, { foreignKey: "id_trilha" }); //A.hasMany(B, fkey): fkey em B
         model.Trails.hasMany(model.Reports, { foreignKey: "id_trilha" });
         model.Trails.hasMany(model.Comments, { foreignKey: "id_trilha" });
-        model.Trails.belongsTo(model.Users, { foreignKey: "id" });
+        model.Trails.hasMany(model.Favorites, { foreignKey: "id_trilha" });
+        model.Trails.belongsTo(model.Users, { foreignKey: "owner" });  //A.belongsTo(B, fkey): fkey em A
       }
     })
 

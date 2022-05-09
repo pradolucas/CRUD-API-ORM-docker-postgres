@@ -13,5 +13,6 @@ router.post('/trails/:id/videos', controller.associatedVideos)
 router.post('/trails/:id/reports', controller.associatedReports)
 router.post('/trails/:id/comments', controller.associatedComments)
 router.post('/trails/:id/users', controller.associatedUser)
+router.post('/trails/:id/favorites', controller.associatedFavorites)
 
 module.exports = router;

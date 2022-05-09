@@ -11,6 +11,7 @@ const routesComment = require('../routes/comment.js');
 const routesReport = require('../routes/report.js');
 const routesTrail = require('../routes/trail.js');
 const routesVideo = require('../routes/video.js');
+const routesFavorite = require('../routes/favorite.js');
 const routesLogin = require('../routes/login.js');
 
 app.use('/', routesUser);
@@ -18,6 +19,7 @@ app.use('/', routesComment)
 app.use('/', routesReport)
 app.use('/', routesTrail)
 app.use('/', routesVideo)
+app.use('/', routesFavorite)
 app.use('/', routesLogin)
 
 app.listen(port, "0.0.0.0", function() {

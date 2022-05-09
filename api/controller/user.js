@@ -44,6 +44,17 @@ const associatedComments = (req, res) => {
   })
 }
 
+const associatedFavorites = (req, res) => {
+  const id = parseInt(req.params.id)
+  const users = model.Users.findAll({ where: { 'id': id }, include: model.Favorites }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
 // .build().save() == .create()
 const insert = (req, res) => {
   const dados = req.body
@@ -87,6 +98,22 @@ const del = (req, res) => {
     })
 }
 
+
+const likeTrail = (req, res) => {
+  const dados = req.body
+  model.Trails.update(dados, {
+    where: {
+      id: dados.id
+    }
+  })
+    .then((data) => {
+      res.send(true)
+    }).catch((error) => {
+      console.log(error)
+      res.send(false)
+    })
+}
+
 module.exports = {
   read
   , read_id
@@ -95,4 +122,6 @@ module.exports = {
   , del
   , associatedTrails
   , associatedComments
+  , associatedFavorites
+  , likeTrail
 };

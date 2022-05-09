@@ -78,6 +78,17 @@ const associatedUser = (req, res) => {
   })
 }
 
+const associatedFavorites = (req, res) => {
+  const id = parseInt(req.params.id)
+  const trail = model.Trails.findAll({ where: { 'id': id }, include: model.Favorites }
+  ).then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
+  })
+}
+
 // .build().save() == .create()
 const insert = (req, res) => {
   const dados = req.body
@@ -108,6 +119,7 @@ const update = (req, res) => {
 
 const del = (req, res) => {
   const dados = req.body
+  console.log(dados)
   model.Trails.destroy({
     where: {
       id: dados.id
@@ -131,4 +143,5 @@ module.exports = {
   , associatedReports
   , associatedComments
   , associatedUser
+  , associatedFavorites
 };

@@ -38,8 +38,9 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'usuarios',
       timestamps: false,
       associate: (model) => {
-        model.Users.hasMany(model.Trails, { foreignKey: "id" });
+        model.Users.hasMany(model.Trails, { foreignKey: "owner" });
         model.Users.hasMany(model.Comments, { foreignKey: "id_usuario" });
+        model.Users.hasMany(model.Favorites, { foreignKey: "id_usuario" });
       }
 
     }
